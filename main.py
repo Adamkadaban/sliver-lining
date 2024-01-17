@@ -13,12 +13,18 @@ async def main():
 	print('[*] Connected to server ...')
 	await client.connect()
 	sessions = await client.sessions()
-	print(f'[*] Sessions: {sessions}')
-	if len(sessions):
-		print(f'[*] Interacting with session {sessions[0].ID}')
-		interact = await client.interact_session(sessions[0].ID)
+	# print(f'[*] Sessions: {sessions}')
+
+	# if len(sessions):
+	# 	print(f'[*] Interacting with session {sessions[0].ID}')
+	# 	interact = await client.interact_session(sessions[0].ID)
+	# 	ls = await interact.ls()
+	# 	print('[*] ls: %r' % ls)
+	for session in sessions:
+		print(f'[*] Interacting with {session.Username}@{session.Hostname} - {session.RemoteAddress}')
+		interact = await client.interact_session(session.ID)
 		ls = await interact.ls()
-		print('[*] ls: %r' % ls)
+		print(ls)
 
 if __name__ == '__main__':
 	asyncio.run(main())
