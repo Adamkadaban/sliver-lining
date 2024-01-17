@@ -24,7 +24,13 @@ async def main():
 		print(f'[*] Interacting with {session.Username}@{session.Hostname} - {session.RemoteAddress}')
 		interact = await client.interact_session(session.ID)
 		ls = await interact.ls()
-		print(ls)
+
+		# First step to pivot information
+		ifconfig = await interact.ifconfig()
+		ifconfig_fields = ifconfig.ListFields()[0][1]
+		print(' --- Interfaces ---')
+		for iface in ifconfig_fields:
+			print(f'\t{iface.Name} - {iface.IPAddresses}')
 
 if __name__ == '__main__':
 	asyncio.run(main())
