@@ -23,10 +23,10 @@ async def main():
 	parser = argparse.ArgumentParser()
 	subparsers = parser.add_subparsers()
 
-	spray_parser = subparsers.add_subparser('spray')
-	interact_parser = subparsers.add_subparser('interact')
-	persist_parser = subparsers.add_subparser('persist')
-	move_parser = subparsers.add_subparser('move')
+	spray_parser = subparsers.add_parser('spray')
+	interact_parser = subparsers.add_parser('interact')
+	persist_parser = subparsers.add_parser('persist')
+	move_parser = subparsers.add_parser('move')
 
 	args = parser.parse_args()
 
