@@ -15,11 +15,6 @@ CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".sliver-client", "configs")
 DEFAULT_CONFIG = os.path.join(CONFIG_DIR, "default.cfg")
 
 async def main():
-	config = SliverClientConfig.parse_config_file(DEFAULT_CONFIG)
-	client = SliverClient(config)
-	print('[*] Connected to server ...')
-	await client.connect()
-
 	parser = argparse.ArgumentParser()
 	subparsers = parser.add_subparsers()
 
@@ -29,6 +24,11 @@ async def main():
 	move_parser = subparsers.add_parser('move')
 
 	args = parser.parse_args()
+
+	config = SliverClientConfig.parse_config_file(DEFAULT_CONFIG)
+	client = SliverClient(config)
+	print('[*] Connected to server ...')
+	await client.connect()
 
 if __name__ == '__main__':
 	asyncio.run(main())
