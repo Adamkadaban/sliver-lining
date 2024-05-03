@@ -40,4 +40,5 @@ class Interact:
 				exe = command_args.pop(0)
 				execute = await interact.execute(exe, command_args, True)
 
+			print(execute.Stderr.decode()) # TOOD: print this in red
 			print(execute.Stdout.decode())
