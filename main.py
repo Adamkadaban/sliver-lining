@@ -3,6 +3,7 @@
 import os
 import asyncio
 from sliver import SliverClientConfig, SliverClient
+import argparse
 
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".sliver-client", "configs")
 DEFAULT_CONFIG = os.path.join(CONFIG_DIR, "default.cfg")
@@ -34,8 +35,12 @@ async def main():
 	print('[*] Connected to server ...')
 	await client.connect()
 
+	parser = argparse.ArgumentParser()
+	subparsers = parser.add_subparsers()
 
-
+	interact_parser = subparsers.add_subparser('interact')
+	spray_parser = subparsers.add_subparser('spray')
+	
 
 if __name__ == '__main__':
 	asyncio.run(main())
