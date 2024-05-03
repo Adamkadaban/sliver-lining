@@ -38,9 +38,12 @@ async def main():
 	parser = argparse.ArgumentParser()
 	subparsers = parser.add_subparsers()
 
-	interact_parser = subparsers.add_subparser('interact')
 	spray_parser = subparsers.add_subparser('spray')
-	
+	interact_parser = subparsers.add_subparser('interact')
+	persist_parser = subparsers.add_subparser('persist')
+	move_parser = subparsers.add_subparser('move')
+
+	args = parser.parse_args()
 
 if __name__ == '__main__':
 	asyncio.run(main())
