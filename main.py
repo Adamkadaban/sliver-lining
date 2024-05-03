@@ -7,11 +7,7 @@ from sliver import SliverClientConfig, SliverClient
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".sliver-client", "configs")
 DEFAULT_CONFIG = os.path.join(CONFIG_DIR, "default.cfg")
 
-async def main():
-	config = SliverClientConfig.parse_config_file(DEFAULT_CONFIG)
-	client = SliverClient(config)
-	print('[*] Connected to server ...')
-	await client.connect()
+async def interact(client):
 	sessions = await client.sessions()
 	# print(f'[*] Sessions: {sessions}')
 
@@ -31,6 +27,15 @@ async def main():
 		print(' --- Interfaces ---')
 		for iface in ifconfig_fields:
 			print(f'\t{iface.Name} - {iface.IPAddresses}')
+
+async def main():
+	config = SliverClientConfig.parse_config_file(DEFAULT_CONFIG)
+	client = SliverClient(config)
+	print('[*] Connected to server ...')
+	await client.connect()
+
+
+
 
 if __name__ == '__main__':
 	asyncio.run(main())
