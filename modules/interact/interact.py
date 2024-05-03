@@ -1,9 +1,9 @@
 class Interact:
 	def __init__(self, client):
-		client = client
+		self.client = client
 
 
-	async def ifconfig():
+	async def ifconfig(self):
 		sessions = await self.client.sessions()
 
 		for session in sessions:
