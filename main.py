@@ -6,10 +6,10 @@ import os
 import asyncio
 import argparse
 
-from modules.spray import Spray
-from modules.interact import Interact
-from modules.persist import Persist
-from modules.move import Move
+from src.modules.spray import Spray
+from src.modules.interact import Interact
+from src.modules.persist import Persist
+from src.modules.move import Move
 
 CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".sliver-client", "configs")
 DEFAULT_CONFIG = os.path.join(CONFIG_DIR, "default.cfg")
@@ -25,10 +25,16 @@ async def main():
 
 	args = parser.parse_args()
 
+
 	config = SliverClientConfig.parse_config_file(DEFAULT_CONFIG)
 	client = SliverClient(config)
 	print('[*] Connected to server ...')
 	await client.connect()
+
+	# interactor = Interact(client)
+	# await interactor.exec('whoami')
+
+
 
 if __name__ == '__main__':
 	asyncio.run(main())
