@@ -1,1 +1,1 @@
-from modules.interact.interact import Interact
+from src.modules.interact.interact import Interact

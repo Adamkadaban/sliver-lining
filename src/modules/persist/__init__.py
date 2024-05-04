@@ -1,1 +1,1 @@
-from modules.persist.persist import Persist
+from src.modules.persist.persist import Persist

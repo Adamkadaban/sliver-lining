@@ -1,1 +1,1 @@
-from modules.move.move import Move
+from src.modules.move.move import Move
