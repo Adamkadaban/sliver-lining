@@ -9,7 +9,6 @@ class Interact:
 		for session in sessions:
 			print(f'[*] Interacting with {session.Username}@{session.Hostname} - {session.RemoteAddress}')
 			interact = await self.client.interact_session(session.ID)
-			ls = await interact.ls()
 
 			# First step to pivot information
 			ifconfig = await interact.ifconfig()
