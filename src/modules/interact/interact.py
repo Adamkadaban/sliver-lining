@@ -12,10 +12,28 @@ class Interact:
 
 			# First step to pivot information
 			ifconfig = await interact.ifconfig()
-			ifconfig_fields = ifconfig.ListFields()[0][1]
+			ifconfig_fields = ifconfig.NetInterfaces
 			print(' --- Interfaces ---')
 			for iface in ifconfig_fields:
 				print(f'\t{iface.Name} - {iface.IPAddresses}')
+
+
+	async def netstat(self):
+		sessions = await self.client.sessions()
+
+		for session in sessions:
+			print(f'[*] Interacting with {session.Username}@{session.Hostname} - {session.RemoteAddress}')
+			interact = await self.client.interact_session(session.ID)
+
+			# TCP, UDP, IPv4, IPv6
+			netstat = await interact.netstat(True, False, True, False) # TODO: I need to make this customizable by the user
+
+			for connection in netstat.Entries:
+				# I think default should be to show all listening connections.
+				if connection.SkState == "LISTEN":
+					print(f"Listening on {connection.LocalAddr.Ip}:{connection.LocalAddr.Port}")
+					if connection.Process.Pid:
+						print(f"\t{connection.Process.Executable} ({connection.Process.Pid})")
 
 
 	async def exec(self, command):
