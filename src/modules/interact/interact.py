@@ -3,7 +3,7 @@ class Interact:
 		self.client = client
 
 
-	async def ifconfig(self, command):
+	async def ifconfig(self):
 		sessions = await self.client.sessions()
 
 		for session in sessions:
